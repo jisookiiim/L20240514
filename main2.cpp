@@ -7,6 +7,10 @@ int PlayerX = 1;
 int PlayerY = 1;
 char PlayerShape = 'P';
 
+int MonsterX = 5;
+int MonsterY = 5; 
+char MonsterShape = 'M';
+
 int GoalX = 8;
 int GoalY = 8;
 char GoalShape = 'G';
@@ -15,6 +19,7 @@ char FloorShape = ' ';
 char WallShape = '*';
 
 int Key = 0;
+
 int World[10][10] =
 {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
@@ -57,12 +62,33 @@ void Tick()
 	{
 		PlayerX++;
 	}
+	
+	if (Key == 'u')
+	{
+		MonsterY--;
+	}
+
+	if (Key == 'j')
+	{
+		MonsterY++;
+	}
+
+	if (Key == 'h')
+	{
+		MonsterX--;
+	}
+
+	if (Key == 'k')
+	{
+		MonsterX++;
+	}
 
 	if (Key == 27)
 	{
 		IsRunning = false;
 	}
 }
+
 void Render()
 {
 	system("cls");
@@ -79,6 +105,10 @@ void Render()
 			{
 				cout << GoalShape;
 			}
+			else if (MonsterX == X && MonsterY == Y)
+			{
+				cout << MonsterShape;
+			}
 			else if (World[Y][X] == 0)
 			{
 				cout << FloorShape;
@@ -91,6 +121,8 @@ void Render()
 		cout << endl;
 	}
 }
+
+
 
 int main()
 {
